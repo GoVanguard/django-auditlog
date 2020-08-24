@@ -33,6 +33,4 @@ class PostgresRouter(object):
         Make sure the postgres app only appears in the 'postgres db'
         database.
         """
-        if model_name.startswith('postgres'):
-            return db == 'postgres'
-        return None
+        return db == 'postgres'
