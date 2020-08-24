@@ -226,7 +226,7 @@ class LogEntry(models.Model):
         """
         substrings = []
 
-        for field, values in items(self.changes_dict):
+        for field, values in self.changes_dict.items():
             substring = smart_text('{field_name:s}{colon:s}{old:s}{arrow:s}{new:s}').format(
                 field_name=field,
                 colon=colon,
@@ -249,7 +249,7 @@ class LogEntry(models.Model):
         model_fields = auditlog.get_model_fields(model._meta.model)
         changes_display_dict = {}
         # grab the changes_dict and iterate through
-        for field_name, values in items(self.changes_dict):
+        for field_name, values in self.changes_dict.items():
             # try to get the field attribute on the model
             try:
                 field = model._meta.get_field(field_name)
