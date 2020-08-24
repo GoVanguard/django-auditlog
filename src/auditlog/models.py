@@ -10,7 +10,8 @@ from django.core.exceptions import FieldDoesNotExist
 from django.db import models, DEFAULT_DB_ALIAS
 from django.db.models import QuerySet, Q
 from django.utils import formats, timezone
-from django.utils.encoding import python_2_unicode_compatible, smart_text
+from django.utils.encoding import smart_text
+from six import python_2_unicode_compatible
 from django.utils.six import iteritems, integer_types
 from django.utils.translation import ugettext_lazy as _
 
