@@ -38,8 +38,8 @@ class AuditlogMiddleware(MiddlewareMixin):
         }
 
         # In case of proxy, set 'original' address
-        if request.META.get('X-Client-IP'):
-            threadlocal.auditlog['remote_addr'] = request.META.get('X-Client-IP').split(',')[0])
+        if request.META.get('HTTP_CLIENT_IP'):
+            threadlocal.auditlog['remote_addr'] = request.META.get('HTTP_CLIENT_IP').split(',')[0])
         elif request.META.get('HTTP_X_FORWARDED_FOR'):
             threadlocal.auditlog['remote_addr'] = request.META.get('HTTP_X_FORWARDED_FOR').split(',')[0])
         else:
