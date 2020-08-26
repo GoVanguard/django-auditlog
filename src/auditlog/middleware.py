@@ -38,8 +38,12 @@ class AuditlogMiddleware(MiddlewareMixin):
         }
 
         # In case of proxy, set 'original' address
-        if request.META.get('HTTP_X_FORWARDED_FOR'):
-            threadlocal.auditlog['remote_addr'] = str(request.META.get('HTTP_X_FORWARDED_FOR').split(',')[0]).split(':')[0]
+        if request.META.get('X-Client-IP'):
+            threadlocal.auditlog['remote_addr'] = request.META.get('X-Client-IP').split(',')[0])
+        elif request.META.get('HTTP_X_FORWARDED_FOR'):
+            threadlocal.auditlog['remote_addr'] = request.META.get('HTTP_X_FORWARDED_FOR').split(',')[0])
+        else:
+            threadlocal.auditlog['remote_addr'] = "0.0.0.0"
 
         # Connect signal for automatic logging
         if hasattr(request, 'user') and is_authenticated(request.user):
